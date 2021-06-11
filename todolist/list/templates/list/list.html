@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <style type="text/css">
+        a{cursor: pointer;}
+		body{
+			margin: 0;
+			padding: 0;
+			background-color: whitesmoke;
+		    font-family:Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.content{
+			width: 70%;
+			height: auto;
+			margin: 0 auto;
+		}
+		.headTittle{
+			height: 70px;
+			width: 100%;
+			text-align: center;
+		}
+		.headTittle p{
+			margin-top: 0;
+			margin-bottom: 0px;
+			font-size: 60px;
+		}
+		.titleLine{
+			width: 100%;
+			height: 0.5px;
+			background-color: gainsboro;
+		}
+		.addContent{
+			text-align: center;
+			margin-top: 50px;
+		}
+		.addContent input{
+			margin-right: 15px;
+			margin-left: 5px;
+			height: 25px;
+			width: 170px;
+			border-radius:5px;
+		}
+		.addContent .deTo{
+			width: 120px;
+		}
+		.addContent .SbTo{
+			border: none;
+			width: 50px;
+			height: 28px;
+			background: dodgerblue;
+		}
+		.todoContent{
+			margin-top: 150px;
+		}
+		.todoContent .todoTitle{
+			font-size: 40px;
+			font-weight: 300;
+			margin-bottom: 20px;
+		}
+		.todoTable{
+			margin-left: 30px;
+			width: 90%;
+			text-align: center;
+		}
+		.borderTittle{
+			font-size: 25px;
+			font-weight: 0.5;
+		}
+		.toA{
+			text-align: center;
+			height:500px;
+			width: 100%;
+		}
+		.toA a{
+		    margin-bottom:10px
+		}
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="headTittle">
+		<p>My To Do List</p>
+		 <div class="titleLine"></div>
+	</div>
+    <div class="addContent">
+        <form action="/list/add" method="post">
+            todo:<input type="text" name="todolist" class="addTo">
+            dead line:<input type="date" name="date" value="none" class="deTo">
+            <input type="submit" value="Add" class="SbTo">
+        </form>
+    </div>
+    <div class="todoContent">
+        <p class="todoTitle">To Do List:</p>
+        <table class="todoTable">
+            <tr class="borderTittle">
+                <td>todo</td>
+                <td>list</td>
+                <td>dead line</td>
+                <td>del</td>
+            </tr>
+            {% for i in todo_list %}
+            <tr>
+                <td><a href="/list/update?id={{i.id}}"><input type="checkbox"></a></td>
+                <td>{{i.todo_List}}</td>
+                <td>{{i.dead_Line}}</td>
+                <td><a href="/list/delete?id={{i.id}}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <div class="toA">
+		<a href="/list/done" >See Done List</a>
+	</div>
+</div>
+</body>
+</html>
